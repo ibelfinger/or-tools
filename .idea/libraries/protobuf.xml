@@ -1,0 +1,19 @@
+<component name="libraryTable">
+  <library name="protobuf">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/protobuf.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.google.ortools.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/Knapsack.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/Vrp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/Tsp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SimpleSatProgram.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SimpleMipProgram.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/SimpleLpProgram.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$PROJECT_DIR$/lib" />
+    </NATIVE>
+    <SOURCES />
+  </library>
+</component>
