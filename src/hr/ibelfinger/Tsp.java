@@ -318,8 +318,8 @@ class Tsp {
                 new Location(82, Location.LocationType.PICKUP,  25.0958, 55.1537),
                 new Location(82, Location.LocationType.DROPOFF, 25.0878, 55.1463),
 
-                new Location(83, Location.LocationType.PICKUP,  25.3056, 55.1216),
-                new Location(83, Location.LocationType.DROPOFF, 25.2077, 55.2783), //This guy
+                new Location(83, Location.LocationType.PICKUP,  25.0959, 55.1539),
+                new Location(83, Location.LocationType.DROPOFF, 25.0957, 55.1538), //This guy
 
                 new Location(84, Location.LocationType.PICKUP,  25.2617, 55.2998),
                 new Location(84, Location.LocationType.DROPOFF, 24.941, 55.056),

@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d5673758-89c6-4e1d-bfd3-d97ae68134cb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/or-testing/hr/ibelfinger/Tsp.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/or-testing/hr/ibelfinger/Tsp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hr/ibelfinger/Tsp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hr/ibelfinger/Tsp.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -53,8 +54,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/hr/ibelfinger/Tsp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="179">
-              <caret line="320" column="71" selection-start-line="320" selection-start-column="64" selection-end-line="320" selection-end-column="71" />
+            <state relative-caret-position="30">
+              <caret line="321" column="80" selection-start-line="321" selection-start-column="80" selection-end-line="321" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1686#1687#0" expanded="true" />
@@ -331,7 +332,7 @@
     <property name="SearchEverywhereHistoryKey" value="IntExp&#9;PSI&#9;JAVA://com.google.ortools.constraintsolver.IntExpr" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551109123307" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551109208993" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -422,7 +423,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35283000" />
+    <option name="totallyTimeSpent" value="35365000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -632,8 +633,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/hr/ibelfinger/Tsp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="320" column="71" selection-start-line="320" selection-start-column="64" selection-end-line="320" selection-end-column="71" />
+        <state relative-caret-position="30">
+          <caret line="321" column="80" selection-start-line="321" selection-start-column="80" selection-end-line="321" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1686#1687#0" expanded="true" />
