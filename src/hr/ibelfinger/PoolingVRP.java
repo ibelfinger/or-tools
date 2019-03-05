@@ -25,7 +25,7 @@ import com.google.ortools.constraintsolver.Solver;
 import hr.ibelfinger.evaluators.CapacityEvaluator;
 import hr.ibelfinger.evaluators.StraightLineEvaluator;
 
-class Tsp {
+class PoolingVRP {
     private static final int CAPACITY = 3;
 
 
@@ -105,8 +105,7 @@ class Tsp {
             if(location.isCnf()) {
                 long pickupNodeIndex = model.nodeToIndex(i);
 
-                model.solver()
-                                .addConstraint(model.solver().makeGreater(
+                model.solver().addConstraint(model.solver().makeGreater(
                         model.cumulVar(pickupNodeIndex, "distance"), 0));
             }
         }
