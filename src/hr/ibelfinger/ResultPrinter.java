@@ -32,14 +32,16 @@ public class ResultPrinter {
                 final int node_index = routing.indexToNode(index);
                 final int next_node_index = routing.indexToNode(
                         assignment.value(routing.nextVar(index)));
+                int lengthBefore = route_dist;
                 route_dist += routing.getArcCostForVehicle(node_index, next_node_index, vehicle_id);
                 final Location location = locations.get(node_index);
 
                 index = assignment.value(routing.nextVar(index));
+                final long capacity = assignment.value(routing.cumulVar(index, "capacity"));
 
                 if(location.getLocationType() != Location.LocationType.DEPOT) {
                     route.add(location);
-                    plan_output += " " + location + " ->";
+                    plan_output += " " + location + " (capacity: "+capacity + ", distance: " + lengthBefore + ") ->";
                     routeLength++;
                 }
 

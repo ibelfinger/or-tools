@@ -41,18 +41,18 @@ class PoolingVRP {
         final int depotIndex = 0;
 
         RoutingModel model = new RoutingModel(locations.size(), numberOfVehicles, depotIndex);
-
+        final Solver solver = model.solver();
         model.setArcCostEvaluatorOfAllVehicles(new StraightLineEvaluator(locations));
-        addDistanceDimension(model, new StraightLineEvaluator(locations));
+        addDistanceDimension(model, new StraightLineEvaluator(locations), locations);
         addCapacityDimension(model, locations);
 
-        markPickupsAndDropoffs(model, locations);
-        markBookingsThatShouldnBeFirstInRoutes(model, locations);
+        markPickupsAndDropoffs(solver, model, locations);
+//        markBookingsThatShouldnBeFirstInRoutes(solver, model, locations);
 
         executeAndPrint(locations, numberOfVehicles, model, FirstSolutionStrategy.Value.GLOBAL_CHEAPEST_ARC);
     }
 
-    private static void addDistanceDimension(RoutingModel routingModel, NodeEvaluator2 distanceCallback){
+    private static void addDistanceDimension(RoutingModel routingModel, NodeEvaluator2 distanceCallback, List<Location> locations){
         String distance = "distance";
         int maximum_distance = Integer.MAX_VALUE;  // Maximum distance per vehicle.
         routingModel.addDimension(
@@ -64,6 +64,8 @@ class PoolingVRP {
         final RoutingDimension distanceDimension = routingModel.getDimensionOrDie(distance);
         // Try to minimize the max distance among vehicles.
         distanceDimension.setGlobalSpanCostCoefficient(100);
+
+        markBookingsThatShouldnBeFirstInRoutes(distanceDimension, routingModel.solver(), routingModel, locations);
     }
 
     private static void addCapacityDimension(RoutingModel routingModel, List<Location> locations){
@@ -74,7 +76,7 @@ class PoolingVRP {
                 new CapacityEvaluator(locations),
                 0, // null capacity slack
                 CAPACITY, // vehicle maximum capacities
-                false, // IDK
+                true, // IDK
                 capacity);
     }
 
@@ -99,19 +101,16 @@ class PoolingVRP {
 
     }
 
-    private static void markBookingsThatShouldnBeFirstInRoutes(RoutingModel model, List<Location> locations) {
+    private static void markBookingsThatShouldnBeFirstInRoutes(RoutingDimension dimension, Solver solver, RoutingModel model, List<Location> locations) {
         for(int i = 0; i < locations.size(); i++) {
             final Location location = locations.get(i);
             if(location.isCnf()) {
-                long pickupNodeIndex = model.nodeToIndex(i);
-
-                model.solver().addConstraint(model.solver().makeGreater(
-                        model.cumulVar(pickupNodeIndex, "distance"), 0));
+                dimension.SetCumulVarSoftLowerBound(i, 1, 100_000_000);
             }
         }
     }
 
-    private static void markPickupsAndDropoffs(RoutingModel model, List<Location> locations) {
+    private static void markPickupsAndDropoffs(Solver solver, RoutingModel model, List<Location> locations) {
         for(int i = 0; i< locations.size(); i++) {
             Location location = locations.get(i);
             if(location.getLocationType() == Location.LocationType.PICKUP) {
@@ -123,16 +122,19 @@ class PoolingVRP {
                     throw new RuntimeException("Booking " + pickupLocation.getBookingId() + " has pickup but no dropoff");
                 }
 
-                markAsPickupDropoff(model, pickupLocationIndex, dropoffLocationIndex, locations);
+                markAsPickupDropoff(solver, model, pickupLocationIndex, dropoffLocationIndex, locations);
+
+                final RoutingDimension distanceDimension = model.getDimensionOrDie("distance");
+
+                distanceDimension.cumulVar(model.nodeToIndex(i)).setRange(0, 1500);
 
             }
         }
     }
 
-    private static void markAsPickupDropoff(RoutingModel model, int pickupArrayIndex, int dropoffArrayIndex, List<Location> locations) {
+    private static void markAsPickupDropoff(Solver solver, RoutingModel model, int pickupArrayIndex, int dropoffArrayIndex, List<Location> locations) {
         long pickupNodeIndex = model.nodeToIndex(pickupArrayIndex);
         long deliveryNodeIndex = model.nodeToIndex(dropoffArrayIndex);
-        final Solver solver = model.solver();
 
         model.AddPickupAndDelivery(pickupArrayIndex, dropoffArrayIndex);
 

@@ -1,6 +1,7 @@
 package hr.ibelfinger.evaluators;
 
 import com.google.ortools.constraintsolver.NodeEvaluator2;
+import com.google.ortools.constraintsolver.RoutingModel;
 import hr.ibelfinger.Location;
 import hr.ibelfinger.LocationUtils;
 
